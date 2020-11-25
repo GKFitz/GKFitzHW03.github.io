@@ -6,7 +6,7 @@ var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"
 var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "x", "y", "z", ];
 var specialChar = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
 
-// This variable is used for the concatnation of the variables later
+// This variable is an empty array and will be used to concatinate the variables within the if statements within the generatePassword function.
 var passOptions = [];
 
 // Write password to the #password input
@@ -21,6 +21,7 @@ function writePassword() {
 
 function generatePassword() {
   // This next line of code is used to tell the user to add a value, and if they don't add a correct value. They will be reminded.
+  //The While statement effectively blocks the length portion
   while (true) {
     var passlength = prompt("How long would you like your password to be? Choose between 8 to 128 characters.");
     if (!passlength) {
@@ -32,7 +33,7 @@ function generatePassword() {
     }
   }
 
-  // This next line of code is used to ask the user how they would like their password to be like.
+  // After picking the length of the password, this next line of code is used to ask the user what characters they would like their password. It is still part of the generatePassword function
   if (confirm("Click ok if you want numbers in your password")) {
     passOptions = passOptions.concat(numbers);
   }
@@ -50,9 +51,9 @@ function generatePassword() {
     alert("Please choose a criteria");
   }
 
-  // this is the empty array that will contain the new empty password
+  // This is the empty array that will contain the new random password
   var randomPassword = [];
-  // This next line of code is the loop required for the generation of the password, and the ramdom pick
+  // This next line of code is the loop required for the generation of the password, and the ramdom picks from the arrays.
   for (var i = 0; i < passlength; i++) {
     var allPassOptions = passOptions[Math.floor(Math.random() * passOptions.length)];
     randomPassword.push(allPassOptions);
